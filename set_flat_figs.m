@@ -1,8 +1,9 @@
-function set_flat_figs(xlims, tlims)
+function set_flat_figs(xlims, tlims, xpos_flat, ypos_flat)
+    
     xlabel('x','fontsize',24)
     ylabel('t','fontsize',24)
-    set(get(gca,'ylabel'),'rotation',0,'position',[-5 10.0595 -1.0000])
-    set(get(gca,'xlabel'),'position',[49.7768 -0.5 0])
+    set(get(gca,'ylabel'),'rotation',0,'position',xpos_flat)
+    set(get(gca,'xlabel'),'position',ypos_flat)
     set(gca,'xticklabel',[],'yticklabel',[],'zticklabel',[])
     xlim(xlims)
     ylim(tlims)

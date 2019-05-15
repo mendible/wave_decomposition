@@ -1,4 +1,4 @@
-function plot_for_paper_complicated(params, ROMS)
+function plot_complicated(params, ROMS)
 close all
 
 Asave = params.Asave;
@@ -10,8 +10,7 @@ t = params.t;
 x = params.x;
 u = params.u;
 n = size(Asave{1},2);
-N = length(xpts);
-colormap(flipud(gray))
+
 colors_mat = {[0,0.4470,0.7410],...
     [0.8500,0.3250,0.0980],...
     [0.9290,0.6940,0.1250],'r','k','c'};
@@ -24,25 +23,28 @@ upod = ROMS.upod;
 
 xlims = [-0.2232 99.7768];
 tlims = [0.0595 20.0595];
+views = [12,23];
+
+xpos_flat = [-5 10 -1];
+ypos_flat = [50 -0.5 0];
+
+xpos = [50 -2 0];
+ypos = [125 10 0];
+zpos = [-27 0 1.5000];
 
 f1 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 % plot the 3D surface of the data
 surfl(x,t,u.'+2), shading interp, colormap(gray)
 hold on
 pcolor(x,t,u.'), shading interp, colormap(flipud(gray))
-view([12,23])
 % title('Original Data','fontsize',18)
-xlabel('x','fontsize',18)
-ylabel('t','fontsize',18)
-set(get(gca,'ylabel'),'rotation',0)
-set(gca,'xtick',[],'xticklabel',[],'ytick',[],'yticklabel',[],'zticklabel',[])
-set(gcf,'color','w')
+set_3d_figs(views, xpos, ypos, zpos)
 
 
 f2 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 pcolor(x,t,u.'), shading interp, colormap(flipud(gray))
 % title('Original Data','fontsize',18)
-set_flat_figs(xlims,tlims)
+set_flat_figs(xlims,tlims,xpos_flat,ypos_flat)
 
 f3 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 % plot the edge/ridge-found points
@@ -50,7 +52,7 @@ pcolor(x,t,u.'), shading interp, colormap(flipud(gray))
 hold on
 scatter(xpts,tpts,'c','filled')
 % title('Ridge Detection','fontsize',18)
-set_flat_figs(xlims,tlims)
+set_flat_figs(xlims,tlims,xpos_flat,ypos_flat)
 
 
 % plot initial spectral clustering
@@ -68,7 +70,7 @@ for jj = 1:n
     end
 end
 % title('Spectral Clustering','fontsize',18)
-set_flat_figs(xlims,tlims)
+set_flat_figs(xlims,tlims,xpos_flat,ypos_flat)
 
 
 f5 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
@@ -83,7 +85,7 @@ for jj = 1:n
     end
 end
 % title('Model Discovery','fontsize',18)
-set_flat_figs(xlims,tlims)
+set_flat_figs(xlims,tlims,xpos_flat,ypos_flat)
 
 % plot final spectral clustering
 f6 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
@@ -100,8 +102,7 @@ for jj = 1:n
     end
 end
 % title(['Final Clusters, Iteraton ',num2str(length(Asave))],'fontsize',18)
-set_flat_figs(xlims,tlims)
-
+set_flat_figs(xlims,tlims,xpos_flat,ypos_flat)
 
 
 % plot final models
@@ -116,54 +117,30 @@ for jj = 1:n
     end
 end
 % title(['Final Models, Iteraton ',num2str(length(Asave))],'fontsize',18)
-set_flat_figs(xlims,tlims)
-
-
-
-% plot future prediction
-f8 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
-tfuture = [t;[1:500]'*(t(2)-t(1))+max(t)];
-shift_future = params.library(tfuture)*Bsave{end};
-pcolor(x,t,u.'), shading interp, colormap(flipud(gray))
-hold on
-for jj = 1:n
-    if pct(jj) > 0.01
-        xtmp = shift_future(:,jj);
-        plot(xtmp,tfuture,'color',colors_mat{jj},'LineWidth',6)
-    end
-end
-% title(['Final Models, Iteraton ',num2str(length(Asave))],'fontsize',18)
-set_flat_figs(xlims,tlims)
-
+set_flat_figs(xlims,tlims,xpos_flat,ypos_flat)
 
 
 %%
-f9 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
-surfl(x,t,u.'+10), shading interp, colormap(gray)
-hold on 
-imagesc(x,t,u.'/max(u(:))), shading interp, colormap(flipud(gray))
-view([12,23])
-title('Original Data')
 
-f10 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
-surfl(x,t,usrpca.'+10), shading interp, colormap(gray)
+f8 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
+surfl(x,t,usrpca.'+2), shading interp, colormap(gray)
 hold on 
 imagesc(x,t,usrpca.'/max(usrpca(:))), shading interp, colormap(flipud(gray))
-view([12,23])
+set_3d_figs(views, xpos, ypos, zpos)
 title('Shifted RPCA')
 
-f11 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
-surfl(x,t,uspod.'+10), shading interp, colormap(gray)
+f9 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
+surfl(x,t,uspod.'+2), shading interp, colormap(gray)
 hold on 
 imagesc(x,t,uspod.'/max(uspod(:))), shading interp, colormap(flipud(gray))
-view([12,23])
+set_3d_figs(views, xpos, ypos, zpos)
 title('Shifted POD')
 
-f12 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
-surfl(x,t,upod.'+10), shading interp, colormap(gray)
+f10 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
+surfl(x,t,upod.'+2), shading interp, colormap(gray)
 hold on 
 imagesc(x,t,upod.'/max(upod(:))), shading interp, colormap(flipud(gray))
-view([12,23])
+set_3d_figs(views, xpos, ypos, zpos)
 title('Unshifted POD')
 
 % 
@@ -174,7 +151,10 @@ title('Unshifted POD')
 % print(f5,'figures/comp_init_models','-depsc2')
 % print(f6,'figures/comp_clusters','-depsc2')
 % print(f7,'figures/comp_models','-depsc2')
-% print(f8,'figures/comp_models','-depsc2')
+% print(f8,'figures/comp_srpcs','-depsc2')
+% print(f9,'figures/comp_spod','-depsc2')
+% print(f10,'figures/comp_pod','-depsc2')
+
 
 end
 
