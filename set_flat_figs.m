@@ -1,0 +1,10 @@
+function set_flat_figs(xlims, tlims)
+    xlabel('x','fontsize',24)
+    ylabel('t','fontsize',24)
+    set(get(gca,'ylabel'),'rotation',0,'position',[-5 10.0595 -1.0000])
+    set(get(gca,'xlabel'),'position',[49.7768 -0.5 0])
+    set(gca,'xticklabel',[],'yticklabel',[],'zticklabel',[])
+    xlim(xlims)
+    ylim(tlims)
+    set(gcf,'color','w')
+end
