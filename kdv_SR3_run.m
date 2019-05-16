@@ -1,6 +1,5 @@
 clear all, close all, clc
-load('kdv2.mat');
-
+load('kdv.mat');
 
 optim_params.u = u;
 optim_params.x = x;
