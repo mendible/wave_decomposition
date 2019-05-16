@@ -21,16 +21,18 @@ usrpca = ROMS.usrpca;
 uspod = ROMS.uspod;
 upod = ROMS.upod;
 
-xlims = [-0.2232 99.7768];
-tlims = [0.0595 20.0595];
+
 views = [12,23];
-
-xpos_flat = [-5 10 -1];
-ypos_flat = [50 -0.5 0];
-
 xpos = [50 -2 0];
 ypos = [125 10 0];
 zpos = [-27 0 1.5000];
+
+xlims = [-0.2232 99.7768];
+tlims = [0.0595 20.0595];
+xpos_flat = [-5 10 -1];
+ypos_flat = [50 -0.5 0];
+
+
 
 f1 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 % plot the 3D surface of the data
