@@ -145,7 +145,7 @@ view([12,23])
 title('shifted POD')
 set_3d_figs(views, xpos,xlims, ypos, ylims, zpos, zlims)
 
-f9 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
+f10 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 surfl(x,t,upod.'+upshift), shading interp, colormap(gray)
 hold on 
 imagesc(x,t,upod.'/max(upod(:))), shading interp, colormap(flipud(gray))

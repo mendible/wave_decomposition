@@ -148,9 +148,9 @@ imagesc(x,t,upod.'/max(upod(:))), shading interp, colormap(flipud(gray))
 set_3d_figs(views, xpos,xlims, ypos, ylims, zpos, zlims)
 title('Unshifted POD')
 
-% 
+
 % print(f1,'figures/comp_data','-depsc2')
-% print(f2,'figures/comp_data_flat','-djpeg','-r600')
+% print(f2,'figures/comp_data_flat','-depsc2')
 % print(f3,'figures/comp_init_ridge','-depsc2')
 % print(f4,'figures/comp_init_clusters','-depsc2')
 % print(f5,'figures/comp_init_models','-depsc2')
