@@ -28,6 +28,10 @@ set(gca,'Fontsize',[12],'Xlim',[-L/2 L/2],'Xtick',[-L/2 0 L/2],'Ylim',[0 10],'Yt
 u = abs(u);
 x = x.';
 
-save('burgers.mat','x','t','u')
+folder = cd;
+[folder,~,~] = fileparts(folder);
+fname = fullfile(folder, 'burgers.mat');
+
+save(fname, 'x', 't', 'u')
 
 
