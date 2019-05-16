@@ -1,17 +1,18 @@
-function plot_complicated(params, ROMS)
+function plot_complicated(params)
 close all
 
-Asave = params.SR3.Asave;
-Bsave = params.SR3.Bsave;
-Wsave = params.SR3.Wsave;
-xpts = params.SR3.xpts;
-tpts = params.SR3.tpts;
+Asave = params.optim.Asave;
+Bsave = params.optim.Bsave;
+Wsave = params.optim.Wsave;
+xpts = params.optim.xpts;
+tpts = params.optim.tpts;
+n = params.optim.n;
 
 t = params.data.t;
 x = params.data.x;
 u = params.data.u;
 N = params.data.N;
-n = params.optim.n;
+
 
 blue = [1, 123, 118]/255; 
 orange = [255, 82, 0]/255; 

@@ -1,7 +1,7 @@
 function [Csave, Bsave, Wsave] = SR3(loss, Cin,  Bin, Win, params)
 
 tol = params.optim.tol;
-maxiter = params.optim.maxiter;
+maxiter = params.otpim.maxiter;
 conv = 0;
 
 proxB = params.optim.proxB; % e.g. sparse regularizer on the B
@@ -57,7 +57,7 @@ while(~conv && iter < maxiter)
     Bsave{iter} = B;
     Wsave{iter} = W;
     
-    obj = obj + norm(C(:) - B(:))*eta + lambda*params.optim.proxBobj(B);
+    obj = obj + norm(C(:) - B(:))*eta + lambda*params.SR3.proxBobj(B);
     
     err = vecnorm(B(:)-Bold(:))/eta + vecnorm(W(:)-Wold(:))/mu;
     %     err = norm(T*A-X);

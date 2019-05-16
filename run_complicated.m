@@ -23,10 +23,12 @@ params.data.t = t.';
 
 params.optim.n = 3;
 params.optim.library = @(var)[ var.^2, var, ones(size(var))];
+params.optim.init_lambda = 10; 
+
 params.optim.mu = 1e8;
 params.optim.zeta = 1e-4; % relaxation parameter, 1e-1
 params.optim.reg = 1e4; %regularization
-params.optim.lambda = 10; %0.15;
+
 params.optim.type = 'ridge';
 
 params = optimSR3(params);

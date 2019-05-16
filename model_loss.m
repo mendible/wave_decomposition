@@ -1,4 +1,4 @@
-function [f,GA, GW] = lineLoss(A, W, params)
+function [f,GA, GW] = model_loss(C, W, params)
 
 % Assume that A is k x n 
 %             X is N x k
@@ -6,11 +6,11 @@ function [f,GA, GW] = lineLoss(A, W, params)
 %             T is N x n 
 %             W is N x n
 
-T = params.T; 
-x = params.x; 
-n = size(A,2); 
+T = params.optim.T; 
+x = params.optim.xpts; 
+n = params.optim.n; 
     
-R = T*A - repmat(x, 1, n); 
+R = T*C - repmat(x, 1, n); 
 RR = R.*R; 
 WR = W.*R; 
 GA = T'*WR; 

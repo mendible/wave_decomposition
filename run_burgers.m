@@ -7,10 +7,11 @@ params.data.t = t;
 
 params.optim.n = 1;
 params.optim.library = @(var)[sqrt(abs(var)), var, ones(size(var))];
-params.optim.mu = 1e8;
+params.optim.init_lambda = 0.1; 
+
 params.optim.zeta = 1e-4; % relaxation parameter, 1e-1
 params.optim.reg = 1e1; %regularization
-params.optim.lambda = 0.1; %0.15;
+
 params.optim.type = 'edge';
 
 params = optimSR3(params);

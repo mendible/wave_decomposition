@@ -6,10 +6,7 @@ t = params.data.t;
 
 n = params.optim.n;
 library = params.optim.library;
-mu = params.optim.mu;
-zeta = params.optim.zeta;
-reg = params.optim.reg; 
-lambda = params.optim.lambda;
+init_lambda = params.optim.init_lambda;
 type = params.optim.type;
 
 %%
@@ -22,54 +19,52 @@ dt = t(2)-t(1);
 [tind,xind] = detect_ridges(u,type);
 xpts = x(xind);
 tpts = t(tind);
+params.optim.xind = xind;
+params.optim.tind = tind;
+params.optim.xpts = xpts;
+params.optim.tpts = tpts;
 
 %% setup data
 T = library(tpts);
-[N,k] = size(T); % number of library functions
-X = repmat(xpts,1,n);
-params.data.N = N;
-pars.T = T;
-pars.x = xpts;
+params.optim.T = T;
 
-loss = @(A,W)lineLoss(A,W,pars);
-proxA = @idProx;
+[N,k] = size(T); % number of library functions
+params.data.N = N;
+params.optim.k = k;
+
+X = repmat(xpts,1,n);
+params.optim.X = X;
+
+loss = @(C,W)model_loss(C,W,params);
 proxW = @SimplexProj;
+params.optim.proxW = proxW;
 
 %% k-sparse rows
 sparsity = 2;
 proxB = @(B,zeta)projOm2c(B, sparsity);
+params.optim.proxB = proxB;
+
 proxBobj = @(x) 0;
-lambda_sr3 = 0;
+params.optim.proxBobj = proxBobj;
 
 %% l1-prox
 %lambda = 0.4;
 %proxB = @projL12c;
 %proxBobj = @(x)norm(x(:),1);
 
-
-%% params
-sr3Par.reg = reg;
-sr3Par.zeta = zeta;
-sr3Par.lambda = lambda_sr3;
-sr3Par.proxBobj = proxBobj;
-sr3Par.mu = mu;
-sr3Par.proxB = proxB;
-sr3Par.proxW = proxW;
-sr3Par.tol = 1e-8;
-sr3Par.maxiter = 10000;
-sr3Par.X = X;
-sr3Par.T = T;
-sr3Par.k = k;
-sr3Par.n = n;
-
 %% initial separation of poithis i nts
-Win = initW(xpts,dx,tpts,dt,n);
+Win = initialize_W(xpts,dx,tpts,dt,n);
 
 %% initial model guess
-Ain = initA(xpts,tpts,Win,k,n,lambda,library);
-Bin = Ain;
+Cin = initialize_C(xpts,tpts,Win,k,n,init_lambda,library);
+Bin = Cin;
 %% run SR3
-[Asave, Bsave, Wsave] = SR3(loss, Ain, Bin, Win, sr3Par);
+params.optim.lambda = 0;
+params.optim.tol = 1e-8;
+params.optim.maxiter = 10000;
+params.optim.mu = 1e8;
+
+[Csave, Bsave, Wsave] = SR3(loss, Cin, Bin, Win, params);
 
 pct = sum(Wsave{end})/N;
 L = library(t);
@@ -79,12 +74,8 @@ shifts = shifts(:,pct>0.01);
 params.data.dx = dx;
 params.data.dt = dt;
 
-params.SR3.Asave = Asave;
-params.SR3.Bsave = Bsave;
-params.SR3.Wsave = Wsave;
-params.SR3.xpts = xpts;
-params.SR3.tpts = tpts;
-params.SR3.xind = xind;
-params.SR3.tind = tind;
-params.SR3.shifts = shifts;
+params.optim.Asave = Csave;
+params.optim.Bsave = Bsave;
+params.optim.Wsave = Wsave;
+params.optim.shifts = shifts;
 

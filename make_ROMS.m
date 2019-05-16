@@ -1,9 +1,11 @@
 function params = make_ROMS(params)
 
 u = params.data.u;
-shifts = params.SR3.shifts;
 t = params.data.t;
 dx = params.data.dx;
+
+shifts = params.optim.shifts;
+
 rank = params.ROM.rank;
 lambda = params.ROM.lambda;
 
