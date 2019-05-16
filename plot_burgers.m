@@ -11,10 +11,10 @@ x = params.x;
 u = params.u;
 n = size(Asave{1},2);
 N = length(xpts);
-colormap(flipud(gray))
-colors_mat = {[0,0.4470,0.7410],...
-              [0.8500,0.3250,0.0980],...
-              [0.9290,0.6940,0.1250],'r','k','c'};
+
+colors_mat = {[1, 123, 118]/255,...
+              [255, 82, 0]/255,...
+              [0.9290,0.6940,0.1250]};
 
 L = params.library(t);
 

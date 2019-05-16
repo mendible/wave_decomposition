@@ -11,9 +11,10 @@ x = params.x;
 u = params.u;
 n = size(Asave{1},2);
 N = length(xpts);
-colors_mat = {[0,0.4470,0.7410],...
-    [0.8500,0.3250,0.0980],...
-    [0.9290,0.6940,0.1250],'r','k','c'};
+
+blue = [1, 123, 118]/255; 
+orange = [255, 82, 0]/255; 
+yellow = [0.9290,0.6940,0.1250];
 
 L = params.library(t);
 
@@ -24,12 +25,12 @@ upod = ROMS.upod;
 
 views = [12,23];
 xpos = [50 -2 0];
-ypos = [125 10 0];
-zpos = [-27 0 1.5000];
+ypos = [105 10 0];
+zpos = [-7 0 2];
 zlims = [0 4];
 
 xlims = [-0.2232 99.7768];
-tlims = [0.0595 20.0595];
+ylims = [0.0595 20.0595];
 xpos_flat = [-5 10 -1];
 ypos_flat = [50 -0.5 0];
 
@@ -47,7 +48,7 @@ set_3d_figs(views, xpos,xlims, ypos, ylims, zpos, zlims)
 f2 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 pcolor(x,t,u.'), shading interp, colormap(flipud(gray))
 % title('Original Data','fontsize',18)
-set_flat_figs(xlims,tlims,xpos_flat,ypos_flat)
+set_flat_figs(xlims,ylims,xpos_flat,ypos_flat)
 
 f3 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 % plot the edge/ridge-found points
@@ -55,9 +56,9 @@ pcolor(x,t,u.'), shading interp, colormap(flipud(gray))
 hold on
 scatter(xpts,tpts,'c','filled')
 % title('Ridge Detection','fontsize',18)
-set_flat_figs(xlims,tlims,xpos_flat,ypos_flat)
+set_flat_figs(xlims,ylims,xpos_flat,ypos_flat)
 
-
+colors_mat = {blue, yellow, orange};
 % plot initial spectral clustering
 f4 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 pct = sum(Wsave{1})/sum(Wsave{1}(:));
@@ -73,7 +74,7 @@ for jj = 1:n
     end
 end
 % title('Spectral Clustering','fontsize',18)
-set_flat_figs(xlims,tlims,xpos_flat,ypos_flat)
+set_flat_figs(xlims,ylims,xpos_flat,ypos_flat)
 
 
 f5 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
@@ -88,8 +89,9 @@ for jj = 1:n
     end
 end
 % title('Model Discovery','fontsize',18)
-set_flat_figs(xlims,tlims,xpos_flat,ypos_flat)
+set_flat_figs(xlims,ylims,xpos_flat,ypos_flat)
 
+colors_mat = {yellow, blue, orange};
 % plot final spectral clustering
 f6 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 pct = sum(Wsave{end})/sum(Wsave{end}(:));
@@ -105,7 +107,7 @@ for jj = 1:n
     end
 end
 % title(['Final Clusters, Iteraton ',num2str(length(Asave))],'fontsize',18)
-set_flat_figs(xlims,tlims,xpos_flat,ypos_flat)
+set_flat_figs(xlims,ylims,xpos_flat,ypos_flat)
 
 
 % plot final models
@@ -120,7 +122,7 @@ for jj = 1:n
     end
 end
 % title(['Final Models, Iteraton ',num2str(length(Asave))],'fontsize',18)
-set_flat_figs(xlims,tlims,xpos_flat,ypos_flat)
+set_flat_figs(xlims,ylims,xpos_flat,ypos_flat)
 
 
 %%

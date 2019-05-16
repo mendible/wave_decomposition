@@ -12,11 +12,14 @@ u = params.u;
 n = size(Asave{1},2);
 N = length(xpts);
 
-colors_mat = {[0,0.4470,0.7410],...
-              [0.8500,0.3250,0.0980],...
-              [0.9290,0.6940,0.1250],'r','k','c'};
+colors_mat = {[1, 123, 118]/255,...
+    [0.9290,0.6940,0.1250],...
+    [255, 82, 0]/255};
+
+
 
 L = params.library(t);
+pct = sum(Wsave{1})/sum(Wsave{1}(:));
 
 usrpca = ROMS.usrpca;
 uspod = ROMS.uspod;
@@ -38,7 +41,7 @@ upshift = 3;
 f1 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 % plot the 3D surface of the data
 surfl(x,t,u.'+upshift), shading interp, colormap(gray)
-hold on 
+hold on
 pcolor(x,t,u.'/max(u(:))), shading interp, colormap(flipud(gray))
 % title('Original Data','fontsize',18)
 set_3d_figs(views, xpos,xlims, ypos, ylims, zpos, zlims)
@@ -60,7 +63,6 @@ set_flat_figs(xlims, ylims, xpos_flat, ypos_flat)
 
 % plot initial spectral clustering
 f4 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
-pct = sum(Wsave{1})/sum(Wsave{1}(:));
 pcolor(x,t,u.'), shading interp, colormap(flipud(gray))
 hold on
 for jj = 1:n
@@ -109,7 +111,7 @@ set_flat_figs(xlims, ylims, xpos_flat, ypos_flat)
 
 
 % plot final models
-f7 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8])
+f7 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 shifts = L*Asave{end};
 pcolor(x,t,u.'), shading interp, colormap(flipud(gray))
 hold on
@@ -126,21 +128,21 @@ set_flat_figs(xlims, ylims, xpos_flat, ypos_flat)
 
 f8 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 surfl(x,t,usrpca.'+upshift), shading interp, colormap(gray)
-hold on 
+hold on
 imagesc(x,t,usrpca.'/max(usrpca(:))), shading interp, colormap(flipud(gray))
 set_3d_figs(views, xpos,xlims, ypos, ylims, zpos, zlims)
 title('Shifted RPCA')
 
 f9 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 surfl(x,t,uspod.'+upshift), shading interp, colormap(gray)
-hold on 
+hold on
 imagesc(x,t,uspod.'/max(uspod(:))), shading interp, colormap(flipud(gray))
 set_3d_figs(views, xpos,xlims, ypos, ylims, zpos, zlims)
 title('Shifted POD')
 
 f10 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 surfl(x,t,upod.'+upshift), shading interp, colormap(gray)
-hold on 
+hold on
 imagesc(x,t,upod.'/max(upod(:))), shading interp, colormap(flipud(gray))
 set_3d_figs(views, xpos,xlims, ypos, ylims, zpos, zlims)
 title('Unshifted POD')

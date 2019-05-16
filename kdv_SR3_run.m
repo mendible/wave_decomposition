@@ -18,8 +18,6 @@ optim_params.type = 'ridge';
 
 optim_params = optimSR3(optim_params);
 
-
-
 lambda = 0.01;
 rank = 1;
 
