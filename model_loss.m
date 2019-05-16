@@ -1,4 +1,4 @@
-function [f,GA, GW] = model_loss(C, W, params)
+function f = model_loss(C, W, params)
 
 % Assume that A is k x n 
 %             X is N x k

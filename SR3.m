@@ -44,7 +44,7 @@ while(~conv && iter < maxiter)
     C = Cnew;
     
     % update W
-    [obj, ~, GW] = loss(C,W);
+    obj = loss(C,W);
     Wold = W;
     R = 0.5*(T*C-X).^2;
     W = proxW(W-mu*R, 1);
