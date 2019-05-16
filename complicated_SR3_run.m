@@ -1,5 +1,6 @@
 clear all, close all, clc
 
+% make the data
 nx = 2^8;
 x = linspace(0,100,nx);
 
@@ -7,6 +8,7 @@ nt = 2^9;
 t = linspace(0,20, nt);
 [Tgrid,Xgrid] = meshgrid(t,x);
 
+% wave speeds
 c1 = -3*ones(size(t));
 c2 = .15.*t;
 
