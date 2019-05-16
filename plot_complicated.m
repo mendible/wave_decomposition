@@ -10,7 +10,7 @@ t = params.t;
 x = params.x;
 u = params.u;
 n = size(Asave{1},2);
-
+N = length(xpts);
 colors_mat = {[0,0.4470,0.7410],...
     [0.8500,0.3250,0.0980],...
     [0.9290,0.6940,0.1250],'r','k','c'};
@@ -26,6 +26,7 @@ views = [12,23];
 xpos = [50 -2 0];
 ypos = [125 10 0];
 zpos = [-27 0 1.5000];
+zlims = [0 4];
 
 xlims = [-0.2232 99.7768];
 tlims = [0.0595 20.0595];
@@ -40,7 +41,7 @@ surfl(x,t,u.'+2), shading interp, colormap(gray)
 hold on
 pcolor(x,t,u.'), shading interp, colormap(flipud(gray))
 % title('Original Data','fontsize',18)
-set_3d_figs(views, xpos, ypos, zpos)
+set_3d_figs(views, xpos,xlims, ypos, ylims, zpos, zlims)
 
 
 f2 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
@@ -128,21 +129,21 @@ f8 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 surfl(x,t,usrpca.'+2), shading interp, colormap(gray)
 hold on 
 imagesc(x,t,usrpca.'/max(usrpca(:))), shading interp, colormap(flipud(gray))
-set_3d_figs(views, xpos, ypos, zpos)
+set_3d_figs(views, xpos,xlims, ypos, ylims, zpos, zlims)
 title('Shifted RPCA')
 
 f9 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 surfl(x,t,uspod.'+2), shading interp, colormap(gray)
 hold on 
 imagesc(x,t,uspod.'/max(uspod(:))), shading interp, colormap(flipud(gray))
-set_3d_figs(views, xpos, ypos, zpos)
+set_3d_figs(views, xpos,xlims, ypos, ylims, zpos, zlims)
 title('Shifted POD')
 
 f10 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 surfl(x,t,upod.'+2), shading interp, colormap(gray)
 hold on 
 imagesc(x,t,upod.'/max(upod(:))), shading interp, colormap(flipud(gray))
-set_3d_figs(views, xpos, ypos, zpos)
+set_3d_figs(views, xpos,xlims, ypos, ylims, zpos, zlims)
 title('Unshifted POD')
 
 % 

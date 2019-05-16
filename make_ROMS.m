@@ -37,7 +37,7 @@ end
 ROMS.U = U;
 ROMS.S = S;
 ROMS.V = V;
-ROMS.usrpca = sum(usrpca,3)/2;
-ROMS.uspod = sum(uspod,3)/2;
+ROMS.usrpca = sum(usrpca,3);
+ROMS.uspod = sum(uspod,3);
 ROMS.upod = upod;
 end

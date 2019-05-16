@@ -37,10 +37,6 @@ ROMS = make_ROMS(optim_params,rank,lambda);
 plot_complicated(optim_params, ROMS)
 
 
-
-
-
-
 % speed = 9;
 % real = [0,0;0,0;speed,speed;0,0;0,-2*pi];
 %
