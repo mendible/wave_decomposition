@@ -24,4 +24,9 @@ title('original data')
 u = abs(usol).';
 x = x.';
 
-save nls.mat x t u 
+
+folder = cd;
+[folder,~,~] = fileparts(folder);
+fname = fullfile(folder, 'nls.mat');
+
+save(fname, 'x', 't', 'u')

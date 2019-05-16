@@ -70,4 +70,9 @@ end
 %     'fontsize',18,'color','r')
 
 t = t.';
-save kdv.mat x t u
+
+folder = cd;
+[folder,~,~] = fileparts(folder);
+fname = fullfile(folder, 'kdv.mat');
+
+save(fname, 'x', 't', 'u')

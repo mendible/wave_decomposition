@@ -1,5 +1,5 @@
 clear all, close all, clc
-load('burgers.mat');
+load('data/burgers.mat');
 
 optim_params.u = u;
 optim_params.x = x;
