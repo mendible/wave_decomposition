@@ -74,7 +74,7 @@ shifts = shifts(:,pct>0.01);
 params.data.dx = dx;
 params.data.dt = dt;
 
-params.optim.Asave = Csave;
+params.optim.Csave = Csave;
 params.optim.Bsave = Bsave;
 params.optim.Wsave = Wsave;
 params.optim.shifts = shifts;

@@ -1,7 +1,7 @@
 function plot_nls(params)
 close all
 
-Asave = params.optim.Asave;
+Csave = params.optim.Csave;
 Bsave = params.optim.Bsave;
 Wsave = params.optim.Wsave;
 xpts = params.optim.xpts;
@@ -79,7 +79,7 @@ set_flat_figs(xlims, ylims, xpos_flat, ypos_flat)
 
 f5 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 % plot initial models
-shifts = L*Asave{1};
+shifts = L*Csave{1};
 pcolor(x,t,u.'), shading interp, colormap(flipud(gray))
 hold on
 for jj = 1:n
@@ -111,7 +111,7 @@ set_flat_figs(xlims, ylims, xpos_flat, ypos_flat)
 
 % plot final models
 f7 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
-shifts = L*Asave{end};
+shifts = L*Csave{end};
 pcolor(x,t,u.'), shading interp, colormap(flipud(gray))
 hold on
 for jj = 1:n

@@ -1,7 +1,7 @@
 function plot_kdv(params)
 close all
 
-Asave = params.optim.Asave;
+Csave = params.optim.Csave;
 Bsave = params.optim.Bsave;
 Wsave = params.optim.Wsave;
 xpts = params.optim.xpts;
