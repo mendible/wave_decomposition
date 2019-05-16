@@ -22,4 +22,7 @@ figure(1), subplot(1,2,1),
 surfl(x,t,abs(usol)); shading interp, colormap(gray);
 title('original data')
 
+u = abs(usol).';
+x = x.';
+
 % save nls.mat x t usol 

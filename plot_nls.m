@@ -26,7 +26,7 @@ upod = ROMS.upod;
 views = [12,23];
 xpos =  [0 -0.8 0];
 ypos =  [17 pi 0];
-zpos = [-23 0 3.5];
+zpos = [-18 0 3.5];
 zlims = [0 7.3];
 
 xlims = [-15.2679 14.7321];

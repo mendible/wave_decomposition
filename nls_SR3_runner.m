@@ -1,9 +1,7 @@
 clear all, close all, clc
-load('nls.mat');
+load('nls2.mat');
 
-u = abs(usol).';
 
-x = x.';
 optim_params.u = u;
 optim_params.x = x;
 optim_params.t = t;
