@@ -1,16 +1,16 @@
 function params = optimSR3(params)
 
-u = params.u;
-x = params.x;
-t = params.t;
+u = params.data.u;
+x = params.data.x;
+t = params.data.t;
 
-n = params.n;
-library = params.library;
-mu = params.mu;
-zeta = params.zeta;
-reg = params.reg; 
-lambda = params.lambda;
-type = params.type;
+n = params.optim.n;
+library = params.optim.library;
+mu = params.optim.mu;
+zeta = params.optim.zeta;
+reg = params.optim.reg; 
+lambda = params.optim.lambda;
+type = params.optim.type;
 
 %%
 dx = x(2)-x(1);
@@ -19,7 +19,7 @@ dt = t(2)-t(1);
 [Xgrid,Tgrid] = meshgrid(x,t);
 
 %% find the points
-[tind,xind] = ridge_det(u,type);
+[tind,xind] = detect_ridges(u,type);
 xpts = x(xind);
 tpts = t(tind);
 
@@ -27,6 +27,7 @@ tpts = t(tind);
 T = library(tpts);
 [N,k] = size(T); % number of library functions
 X = repmat(xpts,1,n);
+params.data.N = N;
 pars.T = T;
 pars.x = xpts;
 
@@ -75,14 +76,15 @@ L = library(t);
 shifts = L(:,1:end-1)*Bsave{end}(1:end-1,:);
 shifts = shifts(:,pct>0.01);
 
-params.dx = dx;
-params.dt = dt;
-params.Asave = Asave;
-params.Bsave = Bsave;
-params.Wsave = Wsave;
-params.xpts = xpts;
-params.tpts = tpts;
-params.xind = xind;
-params.tind = tind;
-params.shifts = shifts;
+params.data.dx = dx;
+params.data.dt = dt;
+
+params.SR3.Asave = Asave;
+params.SR3.Bsave = Bsave;
+params.SR3.Wsave = Wsave;
+params.SR3.xpts = xpts;
+params.SR3.tpts = tpts;
+params.SR3.xind = xind;
+params.SR3.tind = tind;
+params.SR3.shifts = shifts;
 

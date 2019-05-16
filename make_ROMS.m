@@ -1,9 +1,11 @@
-function ROMS = make_ROMS(optim_params,rank,lambda)
+function params = make_ROMS(params)
 
-u = optim_params.u;
-shifts = optim_params.shifts;
-t = optim_params.t;
-dx = optim_params.dx;
+u = params.data.u;
+shifts = params.SR3.shifts;
+t = params.data.t;
+dx = params.data.dx;
+rank = params.ROM.rank;
+lambda = params.ROM.lambda;
 
 % do POD on unshifted data and truncate
 [U.pod,S.pod,V.pod] = svd(u);
@@ -33,11 +35,10 @@ for j = 1:size(shifts,2)
     
 end
 
-
-ROMS.U = U;
-ROMS.S = S;
-ROMS.V = V;
-ROMS.usrpca = sum(usrpca,3);
-ROMS.uspod = sum(uspod,3);
-ROMS.upod = upod;
+params.ROM.U = U;
+params.ROM.S = S;
+params.ROM.V = V;
+params.ROM.usrpca = sum(usrpca,3);
+params.ROM.uspod = sum(uspod,3);
+params.ROM.upod = upod;
 end

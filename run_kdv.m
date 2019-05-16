@@ -1,25 +1,25 @@
 clear all, close all, clc
 load('data/kdv.mat');
 
-optim_params.u = u;
-optim_params.x = x;
-optim_params.t = t;
+params.data.u = u;
+params.data.x = x;
+params.data.t = t;
 
-optim_params.n = 2;
-optim_params.library = @(var)[var.^3, var.^2, var, ones(size(var))];
-optim_params.mu = 1e8;
-optim_params.zeta = 1e-4; % relaxation parameter, 1e-1
-optim_params.reg = 1e1; %regularization
-optim_params.lambda = 2; %0.15;
-optim_params.type = 'ridge';
+params.optim.n = 2;
+params.optim.library = @(var)[var.^3, var.^2, var, ones(size(var))];
+params.optim.mu = 1e8;
+params.optim.zeta = 1e-4; % relaxation parameter, 1e-1
+params.optim.reg = 1e1; %regularization
+params.optim.lambda = 2; %0.15;
+params.optim.type = 'ridge';
 
-optim_params = optimSR3(optim_params);
+params = optimSR3(params);
 
-lambda = 0.01;
-rank = 1;
+params.ROM.lambda = 0.01;
+params.ROM.rank = 1;
 
-ROMS = make_ROMS(optim_params,rank, lambda);
-plot_kdv(optim_params,ROMS)
+params = make_ROMS(params);
+plot_kdv(params)
 
 
 

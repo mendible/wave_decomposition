@@ -1,26 +1,26 @@
 function plot_burgers(params,ROMS)
 close all
 
-Asave = params.Asave;
-Bsave = params.Bsave;
-Wsave = params.Wsave;
-xpts = params.xpts;
-tpts = params.tpts;
-t = params.t;
-x = params.x;
-u = params.u;
-n = size(Asave{1},2);
-N = length(xpts);
+Asave = params.SR3.Asave;
+Bsave = params.SR3.Bsave;
+Wsave = params.SR3.Wsave;
+xpts = params.SR3.xpts;
+tpts = params.SR3.tpts;
+t = params.data.t;
+x = params.data.x;
+u = params.data.u;
+n = params.optim.n;
+N = params.data.N;
 
 colors_mat = {[1, 123, 118]/255,...
               [255, 82, 0]/255,...
               [0.9290,0.6940,0.1250]};
 
-L = params.library(t);
+L = params.optim.library(t);
 
-usrpca = ROMS.usrpca;
-uspod = ROMS.uspod;
-upod = ROMS.upod;
+usrpca = params.ROM.usrpca;
+uspod = params.ROM.uspod;
+upod = params.ROM.upod;
 
 views = [12,23];
 xpos =  [0 -2 0];
