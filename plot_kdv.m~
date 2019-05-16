@@ -1,4 +1,4 @@
-function plot_kdv(params,ROMS)
+function plot_for_paperkdv(params)
 close all
 
 Asave = params.Asave;
@@ -17,40 +17,31 @@ colors_mat = {[0,0.4470,0.7410],...
               [0.9290,0.6940,0.1250],'r','k','c'};
 
 L = params.library(t);
-pct = sum(Wsave{1})/sum(Wsave{1}(:));
-
-usrpca = ROMS.usrpca;
-uspod = ROMS.uspod;
-upod = ROMS.upod;
-
-views = [12,23];
-xpos =  [0 -0.05 0];
-ypos =  [3.4 0.25 0];
-zpos = [-3.5 0 60];
-zlims = [0 120];
-
-xlims = [-3.1556 3.1153];
-ylims = [0.0018 0.6018];
-xpos_flat = [-3.5 0.25];
-ypos_flat = [0 -0.02];
-
-upshift = 50;
 %%
 
 f1 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 % plot the 3D surface of the data
-surfl(x,t,u.'+upshift), shading interp, colormap(gray)
+surfl(x,t,u.'+50), shading interp, colormap(gray)
 hold on 
 imagesc(x,t,u.'/max(u(:))), shading interp, colormap(flipud(gray))
-set_3d_figs(views, xpos,xlims, ypos, ylims, zpos, zlims)
+view([12,23])
+xlim([-pi,pi])
 % title('Original Data','fontsize',18)
-
+xlabel('x','fontsize',18)
+ylabel('t','fontsize',18)
+set(get(gca,'ylabel'),'rotation',0)
+set(gca,'xtick',[],'xticklabel',[],'ytick',[],'yticklabel',[],'zticklabel',[])
+set(gcf,'Color','w')
 
 f2 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 pcolor(x,t,u.'), shading interp, colormap(flipud(gray))
 % title('Original Data','fontsize',18)
-set_flat_figs(xlims, ylims, xpos_flat, ypos_flat)
-
+xlabel('x','fontsize',24)
+ylabel('t','fontsize',24)
+%xlim([-10,10])
+set(get(gca,'ylabel'),'rotation',0)
+set(gca,'xtick',[],'xticklabel',[],'ytick',[],'yticklabel',[],'zticklabel',[])
+set(gcf,'Color','w')
 
 f3 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 % plot the edge/ridge-found points
@@ -58,12 +49,17 @@ pcolor(x,t,u.'), shading interp, colormap(flipud(gray))
 hold on
 scatter(xpts,tpts,'c','filled')
 % title('Ridge Detection','fontsize',18)
-set_flat_figs(xlims, ylims, xpos_flat, ypos_flat)
-
+xlabel('x','fontsize',24)
+ylabel('t','fontsize',24)
+%xlim([-10,10])
+set(get(gca,'ylabel'),'rotation',0)
+set(gca,'xtick',[],'xticklabel',[],'ytick',[],'yticklabel',[])
+set(gcf,'color','w')
 
 
 % plot initial spectral clustering
 f4 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
+pct = sum(Wsave{1})/sum(Wsave{1}(:));
 pcolor(x,t,u.'), shading interp, colormap(flipud(gray))
 hold on
 for jj = 1:n
@@ -76,8 +72,13 @@ for jj = 1:n
     end
 end
 % title('Spectral Clustering','fontsize',18)
-set_flat_figs(xlims, ylims, xpos_flat, ypos_flat)
-
+xlabel('x','fontsize',24)
+ylabel('t','fontsize',24)
+%xlim([-10,10])
+set(get(gca,'ylabel'),'rotation',0)
+set(gca,'xtick',[],'xticklabel',[],'ytick',[],'yticklabel',[])
+set(gcf,'color','w')
+print(f4,'figures/kdv_init_clusters','-depsc2')
 
 
 f5 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
@@ -92,8 +93,13 @@ for jj = 1:n
     end
 end
 % title('Model Discovery','fontsize',18)
-set_flat_figs(xlims, ylims, xpos_flat, ypos_flat)
-
+xlabel('x','fontsize',24)
+ylabel('t','fontsize',24)
+%xlim([-10,10])
+set(get(gca,'ylabel'),'rotation',0)
+set(gca,'xtick',[],'xticklabel',[],'ytick',[],'yticklabel',[])
+set(gcf,'color','w')
+print(f5,'figures/kdv_init_models','-depsc2')
 
 
 % plot final spectral clustering
@@ -111,8 +117,12 @@ for jj = 1:n
     end
 end
 % title(['Final Clusters, Iteraton ',num2str(length(Asave))],'fontsize',18)
-set_flat_figs(xlims, ylims, xpos_flat, ypos_flat)
-
+xlabel('x','fontsize',24)
+ylabel('t','fontsize',24)
+%xlim([-10,10])
+set(get(gca,'ylabel'),'rotation',0)
+set(gca,'xtick',[],'xticklabel',[],'ytick',[],'yticklabel',[])
+set(gcf,'color','w')
 
 
 % plot final models
@@ -127,43 +137,42 @@ for jj = 1:n
     end
 end
 % title(['Final Models, Iteraton ',num2str(length(Asave))],'fontsize',18)
-set_flat_figs(xlims, ylims, xpos_flat, ypos_flat)
+xlabel('x','fontsize',24)
+ylabel('t','fontsize',24)
+%xlim([-10,10])
+set(get(gca,'ylabel'),'rotation',0)
+set(gca,'xtick',[],'xticklabel',[],'ytick',[],'yticklabel',[])
+set(gcf,'color','w')
+
+
 
 f8 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
-surfl(x,t,usrpca.'+upshift), shading interp, colormap(gray)
+surfl(x,t,usrpca.'+10), shading interp, colormap(gray)
 hold on 
 imagesc(x,t,usrpca.'/max(usrpca(:))), shading interp, colormap(flipud(gray))
 view([12,23])
 title('shifted RPCA')
-set_3d_figs(views, xpos,xlims, ypos, ylims, zpos, zlims)
 
 f9 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
-surfl(x,t,uspod.'+upshift), shading interp, colormap(gray)
+surfl(x,t,uspod.'+10), shading interp, colormap(gray)
 hold on 
 imagesc(x,t,uspod.'/max(uspod(:))), shading interp, colormap(flipud(gray))
 view([12,23])
 title('shifted POD')
-set_3d_figs(views, xpos,xlims, ypos, ylims, zpos, zlims)
 
 f9 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
-surfl(x,t,upod.'+upshift), shading interp, colormap(gray)
+surfl(x,t,upod.'+10), shading interp, colormap(gray)
 hold on 
 imagesc(x,t,upod.'/max(upod(:))), shading interp, colormap(flipud(gray))
 view([12,23])
 title('unshifted POD')
-set_3d_figs(views, xpos,xlims, ypos, ylims, zpos, zlims)
 
 
 
-% print(f1,'figures/kdv_data','-depsc2')
-% print(f2,'figures/kdv_data_flat','-depsc2')
-% print(f3,'figures/kdv_init_ridge','-depsc2')
-% print(f4,'figures/kdv_init_clusters','-depsc2')
-% print(f5,'figures/kdv_init_models','-depsc2')
-% print(f6,'figures/kdv_clusters','-depsc2')
-% print(f7,'figures/kdv_models','-depsc2')
-% print(f8,'figures/kdv_usrpca','-depsc2')
-% print(f9,'figures/kdv_uspod','-depsc2')
-% print(f10,'figures/kdv_upod','-depsc2')
+print(f1,'figures/kdv_data','-depsc2')
+print(f2,'figures/kdv_data_flat','-djpeg','-r600')
 
+
+print(f6,'figures/kdv_clusters','-depsc2')
+print(f7,'figures/kdv_models','-depsc2')
 end
