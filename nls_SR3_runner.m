@@ -1,6 +1,5 @@
 clear all, close all, clc
-load('nls2.mat');
-
+load('nls.mat');
 
 optim_params.u = u;
 optim_params.x = x;

@@ -6,8 +6,7 @@ k=(2*pi/L)*[0:n/2-1 -n/2:-1].';
 t=linspace(0,2*pi,501);
 
 omega=2;
- u1=2*sech(x+7).*exp(i*omega*x);
-%u1=2*sech(x-7);
+u1=2*sech(x+7).*exp(i*omega*x);
 u2=2*sech(x-7).*exp(-i*omega*x);
 u=u1+u2;
 ut=fft(u);
@@ -25,4 +24,4 @@ title('original data')
 u = abs(usol).';
 x = x.';
 
-% save nls.mat x t usol 
+save nls.mat x t u 
