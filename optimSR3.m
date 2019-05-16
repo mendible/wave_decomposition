@@ -66,7 +66,7 @@ Win = initW(xpts,dx,tpts,dt,n);
 
 %% initial model guess
 Ain = initA(xpts,tpts,Win,k,n,lambda,library);
-Bin = Ain
+Bin = Ain;
 %% run SR3
 [Asave, Bsave, Wsave] = SR3(loss, Ain, Bin, Win, sr3Par);
 
