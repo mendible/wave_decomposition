@@ -2,7 +2,7 @@ clear all, close all, clc
 load('burgers.mat');
 
 u = abs(u);
-x = x.';
+
 optim_params.u = u;
 optim_params.x = x;
 optim_params.t = t;
