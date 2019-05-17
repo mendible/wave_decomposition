@@ -133,33 +133,33 @@ surfl(x,t,usrpca.'+2), shading interp, colormap(gray)
 hold on 
 imagesc(x,t,usrpca.'/max(usrpca(:))), shading interp, colormap(flipud(gray))
 set_3d_figs(views, xpos,xlims, ypos, ylims, zpos, zlims)
-title('Shifted RPCA')
+% title('Shifted RPCA')
 
 f9 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 surfl(x,t,uspod.'+2), shading interp, colormap(gray)
 hold on 
 imagesc(x,t,uspod.'/max(uspod(:))), shading interp, colormap(flipud(gray))
 set_3d_figs(views, xpos,xlims, ypos, ylims, zpos, zlims)
-title('Shifted POD')
+% title('Shifted POD')
 
 f10 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 surfl(x,t,upod.'+2), shading interp, colormap(gray)
 hold on 
 imagesc(x,t,upod.'/max(upod(:))), shading interp, colormap(flipud(gray))
 set_3d_figs(views, xpos,xlims, ypos, ylims, zpos, zlims)
-title('Unshifted POD')
+% title('Unshifted POD')
 
 
-% print(f1,'figures/comp_data','-depsc2')
-% print(f2,'figures/comp_data_flat','-depsc2')
-% print(f3,'figures/comp_init_ridge','-depsc2')
-% print(f4,'figures/comp_init_clusters','-depsc2')
-% print(f5,'figures/comp_init_models','-depsc2')
-% print(f6,'figures/comp_clusters','-depsc2')
-% print(f7,'figures/comp_models','-depsc2')
-% print(f8,'figures/comp_srpcs','-depsc2')
-% print(f9,'figures/comp_spod','-depsc2')
-% print(f10,'figures/comp_pod','-depsc2')
+% print(f1,'figures/comp_data','-depsc2', '-loose')
+% print(f2,'figures/comp_data_flat','-depsc2', '-loose')
+% print(f3,'figures/comp_init_ridge','-depsc2', '-loose')
+% print(f4,'figures/comp_init_clusters','-depsc2', '-loose')
+% print(f5,'figures/comp_init_models','-depsc2', '-loose')
+% print(f6,'figures/comp_clusters','-depsc2', '-loose')
+% print(f7,'figures/comp_models','-depsc2', '-loose')
+% print(f8,'figures/comp_srpcs','-depsc2', '-loose')
+% print(f9,'figures/comp_spod','-depsc2', '-loose')
+% print(f10,'figures/comp_pod','-depsc2', '-loose')
 
 
 end

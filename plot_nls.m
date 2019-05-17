@@ -130,33 +130,32 @@ surfl(x,t,usrpca.'+upshift), shading interp, colormap(gray)
 hold on
 imagesc(x,t,usrpca.'/max(usrpca(:))), shading interp, colormap(flipud(gray))
 set_3d_figs(views, xpos,xlims, ypos, ylims, zpos, zlims)
-title('Shifted RPCA')
+% title('Shifted RPCA')
 
 f9 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 surfl(x,t,uspod.'+upshift), shading interp, colormap(gray)
 hold on
 imagesc(x,t,uspod.'/max(uspod(:))), shading interp, colormap(flipud(gray))
 set_3d_figs(views, xpos,xlims, ypos, ylims, zpos, zlims)
-title('Shifted POD')
+% title('Shifted POD')
 
 f10 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 surfl(x,t,upod.'+upshift), shading interp, colormap(gray)
 hold on
 imagesc(x,t,upod.'/max(upod(:))), shading interp, colormap(flipud(gray))
 set_3d_figs(views, xpos,xlims, ypos, ylims, zpos, zlims)
-title('Unshifted POD')
+% title('Unshifted POD')
 
-% print(f1,'figures/nls_data','-djpeg','-r600')
-% print(f2,'figures/nls_data_flat','-djpeg','-r600')
-% print(f3,'figures/nls_init_ridge','-djpeg','-r600')
-% print(f4,'figures/nls_init_clusters','-djpeg','-r600')
-% print(f5,'figures/nls_init_models','-djpeg','-r600')
-% print(f6,'figures/nls_clusters','-djpeg','-r600')
-% print(f7,'figures/nls_models','-djpeg','-r600')
-% print(f8, 'figures/nls_sprca','-djpeg','-r600')
-% print(f9, 'figures/nls_spod','-djpeg','-r600')
-% print(f10, 'figures/nls_pod','-djpeg','-r600')
-
+% print(f1,'figures/nls_data','-depsc2', '-loose')
+% print(f2,'figures/nls_data_flat','-depsc2', '-loose')
+% print(f3,'figures/nls_init_ridge','-depsc2', '-loose')
+% print(f4,'figures/nls_init_clusters','-depsc2', '-loose')
+% print(f5,'figures/nls_init_models','-depsc2', '-loose')
+% print(f6,'figures/nls_clusters','-depsc2', '-loose')
+% print(f7,'figures/nls_models','-depsc2', '-loose')
+% print(f8, 'figures/nls_sprca','-depsc2', '-loose')
+% print(f9, 'figures/nls_spod','-depsc2', '-loose')
+% print(f10, 'figures/nls_pod','-depsc2', '-loose')
 end
 
 

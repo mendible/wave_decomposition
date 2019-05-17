@@ -135,7 +135,7 @@ surfl(x,t,usrpca.'+upshift), shading interp, colormap(gray)
 hold on 
 imagesc(x,t,usrpca.'/max(usrpca(:))), shading interp, colormap(flipud(gray))
 view([12,23])
-title('shifted RPCA')
+% title('shifted RPCA')
 set_3d_figs(views, xpos,xlims, ypos, ylims, zpos, zlims)
 
 f9 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
@@ -143,7 +143,7 @@ surfl(x,t,uspod.'+upshift), shading interp, colormap(gray)
 hold on 
 imagesc(x,t,uspod.'/max(uspod(:))), shading interp, colormap(flipud(gray))
 view([12,23])
-title('shifted POD')
+% title('shifted POD')
 set_3d_figs(views, xpos,xlims, ypos, ylims, zpos, zlims)
 
 f10 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
@@ -151,20 +151,20 @@ surfl(x,t,upod.'+upshift), shading interp, colormap(gray)
 hold on 
 imagesc(x,t,upod.'/max(upod(:))), shading interp, colormap(flipud(gray))
 view([12,23])
-title('unshifted POD')
+% title('unshifted POD')
 set_3d_figs(views, xpos,xlims, ypos, ylims, zpos, zlims)
 
 
 
-% print(f1,'figures/kdv_data','-depsc2')
-% print(f2,'figures/kdv_data_flat','-depsc2')
-% print(f3,'figures/kdv_init_ridge','-depsc2')
-% print(f4,'figures/kdv_init_clusters','-depsc2')
-% print(f5,'figures/kdv_init_models','-depsc2')
-% print(f6,'figures/kdv_clusters','-depsc2')
-% print(f7,'figures/kdv_models','-depsc2')
-% print(f8,'figures/kdv_usrpca','-depsc2')
-% print(f9,'figures/kdv_uspod','-depsc2')
-% print(f10,'figures/kdv_upod','-depsc2')
+% print(f1,'figures/kdv_data','-depsc2', '-loose')
+% print(f2,'figures/kdv_data_flat','-depsc2', '-loose')
+% print(f3,'figures/kdv_init_ridge','-depsc2', '-loose')
+% print(f4,'figures/kdv_init_clusters','-depsc2', '-loose')
+% print(f5,'figures/kdv_init_models','-depsc2', '-loose')
+% print(f6,'figures/kdv_clusters','-depsc2', '-loose')
+% print(f7,'figures/kdv_models','-depsc2', '-loose')
+% print(f8,'figures/kdv_usrpca','-depsc2', '-loose')
+% print(f9,'figures/kdv_uspod','-depsc2', '-loose')
+% print(f10,'figures/kdv_upod','-depsc2', '-loose')
 
 end
