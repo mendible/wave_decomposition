@@ -53,9 +53,10 @@ while(~conv && iter < maxiter)
     Bold = B;
     B = proxB(C, zeta*lambda);
     
-    Csave{iter} = C;
-    Bsave{iter} = B;
-    Wsave{iter} = W;
+    pct = sum(W)/params.data.N;
+    Csave{iter} = C(:,pct>0.1);
+    Bsave{iter} = B(:,pct>0.1);
+    Wsave{iter} = W(:,pct>0.1);
     
     obj = obj + norm(C(:) - B(:))*eta + lambda*params.optim.proxBobj(B);
     

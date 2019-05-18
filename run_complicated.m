@@ -42,7 +42,5 @@ params = make_ROMS(params);
 plot_complicated(params)
 
 
-% speed = 9;
-% real = [0,0;0,0;speed,speed;0,0;0,-2*pi];
-%
-% final_err = norm(Afinal-real)/norm(real)
+real = [0.15,0;0,-3;20,80];
+final_err = norm(params.optim.Bsave{end}-real)/norm(real)

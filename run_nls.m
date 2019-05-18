@@ -23,3 +23,9 @@ params.ROM.rank = 1;
 params = make_ROMS(params);
 
 plot_nls(params)
+
+
+speed = 2;
+offset = 7;
+real = [0,0;0,0;-speed,speed;-offset,offset];
+final_err = norm(params.optim.Bsave{end}-real)/norm(real)

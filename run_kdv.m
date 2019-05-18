@@ -24,14 +24,6 @@ params = make_ROMS(params);
 plot_kdv(params)
 
 
-
-% opt.AB = 'B';
-% opt.frames = 1:length(optim_params.Wsave);
-% opt.sepFigs = 0;
-% opt.fname = 'kdv.mp4';
-% plot_iterations(optim_params,opt);
-
-% speed = 9;
-% real = [0,0;0,0;speed,speed;0,0;0,-2*pi];
-% 
-% final_err = norm(Afinal-real)/norm(real)
+speed = 9;
+real = [0,0;0,0;speed,speed;0,-2*pi];
+final_err = norm(params.optim.Bsave{end}-real)/norm(real)

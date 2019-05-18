@@ -66,10 +66,9 @@ params.optim.mu = 1e8;
 
 [Csave, Bsave, Wsave] = SR3(loss, Cin, Bin, Win, params);
 
-pct = sum(Wsave{end})/N;
+
 L = library(t);
 shifts = L(:,1:end-1)*Bsave{end}(1:end-1,:);
-shifts = shifts(:,pct>0.01);
 
 params.data.dx = dx;
 params.data.dt = dt;

@@ -67,14 +67,10 @@ set_flat_figs(xlims, ylims, xpos_flat, ypos_flat)
 f4 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 pcolor(x,t,u.'), shading interp, colormap(flipud(gray))
 hold on
-for jj = 1:n
-    if pct(jj) > 0.01
-        for kk = 1:N
-            if Wsave{1}(kk,jj) == 1
-                plot(xpts(kk),tpts(kk),'.','markersize',16,'color',colors_mat{jj})
-            end
-        end
-    end
+for jj = 1:size(Wsave{1},2)
+    xplot = xpts(logical(Wsave{1}(:,jj)));
+    tplot = tpts(logical(Wsave{1}(:,jj)));
+    plot(xplot,tplot,'.','markersize',16,'color',colors_mat{jj})
 end
 % title('Spectral Clustering','fontsize',18)
 set_flat_figs(xlims, ylims, xpos_flat, ypos_flat)
@@ -86,11 +82,9 @@ f5 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 shifts = L*Bsave{1};
 pcolor(x,t,u.'), shading interp, colormap(flipud(gray))
 hold on
-for jj = 1:n
-    if pct(jj) > 0.01
-        xtmp = shifts(:,jj);
-        plot(xtmp,t,'color',colors_mat{jj},'LineWidth',6)
-    end
+for jj = 1:size(shifts,2)
+    xtmp = shifts(:,jj);
+    plot(xtmp,t,'color',colors_mat{jj},'LineWidth',6)
 end
 % title('Model Discovery','fontsize',18)
 set_flat_figs(xlims, ylims, xpos_flat, ypos_flat)
@@ -102,14 +96,10 @@ f6 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 pct = sum(Wsave{end})/sum(Wsave{end}(:));
 pcolor(x,t,u.'), shading interp, colormap(flipud(gray))
 hold on
-for jj = 1:n
-    if pct(jj) > 0.01
-        for kk = 1:N
-            if Wsave{end}(kk,jj) == 1
-                plot(xpts(kk),tpts(kk),'.','markersize',16,'color',colors_mat{jj})
-            end
-        end
-    end
+for jj = 1:size(Wsave{end},2)
+    xplot = xpts(logical(Wsave{end}(:,jj)));
+    tplot = tpts(logical(Wsave{end}(:,jj)));
+    plot(xplot,tplot,'.','markersize',16,'color',colors_mat{jj})
 end
 % title(['Final Clusters, Iteraton ',num2str(length(Asave))],'fontsize',18)
 set_flat_figs(xlims, ylims, xpos_flat, ypos_flat)
@@ -121,11 +111,9 @@ f7 = figure('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
 shifts = L*Bsave{end};
 pcolor(x,t,u.'), shading interp, colormap(flipud(gray))
 hold on
-for jj = 1:n
-    if pct(jj) > 0.01
-        xtmp = shifts(:,jj);
-        plot(xtmp,t,'color',colors_mat{jj},'LineWidth',6)
-    end
+for jj = 1:size(shifts,2)
+    xtmp = shifts(:,jj);
+    plot(xtmp,t,'color',colors_mat{jj},'LineWidth',6) 
 end
 % title(['Final Models, Iteraton ',num2str(length(Asave))],'fontsize',18)
 set_flat_figs(xlims, ylims, xpos_flat, ypos_flat)
@@ -156,15 +144,15 @@ set_3d_figs(views, xpos,xlims, ypos, ylims, zpos, zlims)
 
 
 
-% print(f1,'figures/kdv_data','-depsc2', '-loose')
-% print(f2,'figures/kdv_data_flat','-depsc2', '-loose')
-% print(f3,'figures/kdv_init_ridge','-depsc2', '-loose')
-% print(f4,'figures/kdv_init_clusters','-depsc2', '-loose')
-% print(f5,'figures/kdv_init_models','-depsc2', '-loose')
-% print(f6,'figures/kdv_clusters','-depsc2', '-loose')
-% print(f7,'figures/kdv_models','-depsc2', '-loose')
-% print(f8,'figures/kdv_usrpca','-depsc2', '-loose')
-% print(f9,'figures/kdv_uspod','-depsc2', '-loose')
-% print(f10,'figures/kdv_upod','-depsc2', '-loose')
+print(f1,'figures/kdv_data','-depsc2', '-loose')
+print(f2,'figures/kdv_data_flat','-depsc2', '-loose')
+print(f3,'figures/kdv_init_ridge','-depsc2', '-loose')
+print(f4,'figures/kdv_init_clusters','-depsc2', '-loose')
+print(f5,'figures/kdv_init_models','-depsc2', '-loose')
+print(f6,'figures/kdv_clusters','-depsc2', '-loose')
+print(f7,'figures/kdv_models','-depsc2', '-loose')
+print(f8,'figures/kdv_usrpca','-depsc2', '-loose')
+print(f9,'figures/kdv_uspod','-depsc2', '-loose')
+print(f10,'figures/kdv_upod','-depsc2', '-loose')
 
 end
