@@ -1,4 +1,4 @@
-clear all, close all, clc
+clear all, close all, clc, addpath('RPCA')
 load('data/burgers.mat');
 
 params.data.u = u;
