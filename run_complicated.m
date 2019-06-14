@@ -1,4 +1,5 @@
-clear all, close all, clc
+clear all, close all, clc, addpath('RPCA')
+
 
 % make the data
 nx = 2^8;

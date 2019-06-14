@@ -29,11 +29,23 @@ for j = 1:size(shifts,2)
     [U.srpca{j},S.srpca{j},V.srpca{j}] = svd(LowRank{j});
     lowsrpca(:,:,j) = U.srpca{j}(:,1:rank)*S.srpca{j}(1:rank,1:rank)*V.srpca{j}(:,1:rank)';
     
+%     x1 = [ushift(:,1:end-2,j),ushift(:,2:end-1)];
+%     x2 = [ushift(:,2:end-1,j),ushift(:,3:end)];
+%     [Phi, Lambda, b] = DMD(x1,x2,rank);
+%     omega = diag(log(Lambda)/params.data.dt);
+%     t = params.data.t;
+%     udmd = zeros(size(ushift(:,:,j)));
+%     for kk = 1:rank
+%         udmd = udmd + b(kk)*Phi(:,kk)*exp(omega(kk).*t');
+%     end
+    
     % unshift for each wave speed
     for jj = 1:length(t)
         usrpca(:,jj,j) = circshift(lowsrpca(:,jj,j),round(shifts(jj,j)/dx));
         uspod(:,jj,j) = circshift(lowspod(:,jj,j),round(shifts(jj,j)/dx));
     end
+    
+    
     
 end
 

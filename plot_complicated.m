@@ -23,6 +23,8 @@ L = params.optim.library(t);
 usrpca = params.ROM.usrpca;
 uspod = params.ROM.uspod;
 upod = params.ROM.upod;
+spod_spec = diag(params.ROM.S.spod{1}+params.ROM.S.spod{2})/2;
+srpca_spec = diag(params.ROM.S.srpca{1}+params.ROM.S.srpca{2})/2;
 
 views = [12,23];
 xpos = [50 -2 0];
@@ -134,6 +136,27 @@ imagesc(x,t,upod.'/max(upod(:))), shading interp, colormap(flipud(gray))
 set_3d_figs(views, xpos,xlims, ypos, ylims, zpos, zlims)
 % title('Unshifted POD')
 
+f11 = figure;%('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
+semilogy(diag(params.ROM.S.pod),'color',colors_mat{1},'linewidth',2)
+hold on
+semilogy(spod_spec,'color',colors_mat{2},'linewidth',2)
+semilogy(srpca_spec,'color',colors_mat{3},'linewidth',2)
+set(gca,'fontsize',18)
+xlim([-5 255])
+xlabel('rank r','fontsize',24)
+ylabel('\sigma_r', 'fontsize',24,'rotation',0,'position',[-35 1e-4])
+legend('POD','shifted POD','shifted RPCA')
+
+
+f12 = figure;%('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
+semilogy(diag(params.ROM.S.pod),'color',colors_mat{1},'linewidth',2)
+hold on
+semilogy(srpca_spec,'color',colors_mat{2},'linewidth',2)
+set(gca,'fontsize',18)
+xlim([-0.5 50])
+xlabel('rank r','fontsize',24)
+ylabel('\sigma_r', 'fontsize',24,'rotation',0,'position',[-35 1e-4])
+legend('Without shifting','With shifting')
 
 % print(f1,'figures/comp_data','-depsc2', '-loose')
 % print(f2,'figures/comp_data_flat','-depsc2', '-loose')
@@ -145,6 +168,7 @@ set_3d_figs(views, xpos,xlims, ypos, ylims, zpos, zlims)
 % print(f8,'figures/comp_srpcs','-depsc2', '-loose')
 % print(f9,'figures/comp_spod','-depsc2', '-loose')
 % print(f10,'figures/comp_pod','-depsc2', '-loose')
+print(f11, 'figures/comp_spectrum','-depsc2', '-loose')
 
 
 end

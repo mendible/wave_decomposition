@@ -68,7 +68,7 @@ params.optim.mu = 1e8;
 
 
 L = library(t);
-shifts = L(:,1:end-1)*Bsave{end}(1:end-1,:);
+shifts = L(:,1:end-1)*Bsave{end}(1:end-1,:); % real
 
 params.data.dx = dx;
 params.data.dt = dt;

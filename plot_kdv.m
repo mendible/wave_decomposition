@@ -23,6 +23,8 @@ pct = sum(Wsave{1})/sum(Wsave{1}(:));
 usrpca = params.ROM.usrpca;
 uspod = params.ROM.uspod;
 upod = params.ROM.upod;
+spod_spec = diag(params.ROM.S.spod{1}+params.ROM.S.spod{2})/2;
+srpca_spec = diag(params.ROM.S.srpca{1}+params.ROM.S.srpca{2})/2;
 
 views = [12,23];
 xpos =  [0 -0.05 0];
@@ -142,17 +144,28 @@ view([12,23])
 % title('unshifted POD')
 set_3d_figs(views, xpos,xlims, ypos, ylims, zpos, zlims)
 
+f11 = figure;%('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
+semilogy(diag(params.ROM.S.pod),'color',colors_mat{1},'linewidth',2)
+hold on
+semilogy(spod_spec,'color',colors_mat{2},'linewidth',2)
+semilogy(srpca_spec,'color',colors_mat{3},'linewidth',2)
+set(gca,'fontsize',18)
+xlim([-5 515])
+xlabel('rank r','fontsize',24)
+ylabel('\sigma_r', 'fontsize',24,'rotation',0,'position',[-65 1e-4])
+legend('POD','shifted POD','shifted RPCA')
 
 
-print(f1,'figures/kdv_data','-depsc2', '-loose')
-print(f2,'figures/kdv_data_flat','-depsc2', '-loose')
-print(f3,'figures/kdv_init_ridge','-depsc2', '-loose')
-print(f4,'figures/kdv_init_clusters','-depsc2', '-loose')
-print(f5,'figures/kdv_init_models','-depsc2', '-loose')
-print(f6,'figures/kdv_clusters','-depsc2', '-loose')
-print(f7,'figures/kdv_models','-depsc2', '-loose')
-print(f8,'figures/kdv_usrpca','-depsc2', '-loose')
-print(f9,'figures/kdv_uspod','-depsc2', '-loose')
-print(f10,'figures/kdv_upod','-depsc2', '-loose')
+% print(f1,'figures/kdv_data','-depsc2', '-loose')
+% print(f2,'figures/kdv_data_flat','-depsc2', '-loose')
+% print(f3,'figures/kdv_init_ridge','-depsc2', '-loose')
+% print(f4,'figures/kdv_init_clusters','-depsc2', '-loose')
+% print(f5,'figures/kdv_init_models','-depsc2', '-loose')
+% print(f6,'figures/kdv_clusters','-depsc2', '-loose')
+% print(f7,'figures/kdv_models','-depsc2', '-loose')
+% print(f8,'figures/kdv_usrpca','-depsc2', '-loose')
+% print(f9,'figures/kdv_uspod','-depsc2', '-loose')
+% print(f10,'figures/kdv_upod','-depsc2', '-loose')
+print(f11, 'figures/kdv_spectrum','-depsc2', '-loose')
 
 end

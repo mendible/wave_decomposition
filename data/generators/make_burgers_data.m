@@ -5,7 +5,7 @@ clear all; close all; clc
 
 % setup
 dt=0.1;
-t=0:dt:20; eps=0.1; 
+t=0.1:dt:20; eps=0.1; 
 L=16; n=256; 
 x2=linspace(-L/2,L/2,n+1); x=x2(1:n); k=(2*pi/L)*[0:n/2-1 -n/2:-1].';
 k2=fftshift(k);
