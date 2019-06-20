@@ -25,6 +25,8 @@ uspod = params.ROM.uspod;
 upod = params.ROM.upod;
 spod_spec = diag(params.ROM.S.spod{1}+params.ROM.S.spod{2})/2;
 srpca_spec = diag(params.ROM.S.srpca{1}+params.ROM.S.srpca{2})/2;
+pod_spec = diag(params.ROM.S.pod);
+rank_pct = [1:length(pod_spec)]/length(pod_spec);
 
 views = [12,23];
 xpos = [50 -2 0];
@@ -149,15 +151,13 @@ legend('POD','shifted POD','shifted RPCA')
 
 
 f12 = figure;%('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
-semilogy(diag(params.ROM.S.pod),'color',colors_mat{1},'linewidth',2)
+semilogy(pod_spec/sum(pod_spec),'color',colors_mat{1},'linewidth',2)
 hold on
-semilogy(srpca_spec,'color',colors_mat{2},'linewidth',2)
+semilogy(srpca_spec/sum(srpca_spec),'color',colors_mat{2},'linewidth',2)
 set(gca,'fontsize',18)
-xlim([-0.5 50])
-xlabel('rank r','fontsize',24)
-ylabel('\sigma_r', 'fontsize',24,'rotation',0,'position',[-35 1e-4])
-legend('Without shifting','With shifting')
-
+xlim([0.5,10])
+xlabel('Rank','fontsize',24)
+legend('Unshifted','Shifted')
 % print(f1,'figures/comp_data','-depsc2', '-loose')
 % print(f2,'figures/comp_data_flat','-depsc2', '-loose')
 % print(f3,'figures/comp_init_ridge','-depsc2', '-loose')
