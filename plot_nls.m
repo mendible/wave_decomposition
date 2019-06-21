@@ -155,7 +155,8 @@ hold on
 semilogy(rank_pct,srpca_spec/sum(srpca_spec),'color',colors_mat{2},'linewidth',2)
 set(gca,'fontsize',18)
 xlabel('% Modes Retained','fontsize',24)
-legend('Unshifted','Shifted')
+legend('POD','UnTWIST')
+
 
 % print(f1,'figures/nls_data','-depsc2', '-loose')
 % print(f2,'figures/nls_data_flat','-depsc2', '-loose')

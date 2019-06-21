@@ -151,13 +151,13 @@ legend('POD','shifted POD','shifted RPCA')
 
 
 f12 = figure;%('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
-semilogy(pod_spec/sum(pod_spec),'color',colors_mat{1},'linewidth',2)
+semilogy(rank_pct,pod_spec/sum(pod_spec),'color',colors_mat{1},'linewidth',2)
 hold on
-semilogy(srpca_spec/sum(srpca_spec),'color',colors_mat{2},'linewidth',2)
+semilogy(rank_pct,srpca_spec/sum(srpca_spec),'color',colors_mat{2},'linewidth',2)
 set(gca,'fontsize',18)
-xlim([0.5,10])
+% xlim([0.5,10])
 xlabel('Rank','fontsize',24)
-legend('Unshifted','Shifted')
+legend('POD','UnTWIST')
 % print(f1,'figures/comp_data','-depsc2', '-loose')
 % print(f2,'figures/comp_data_flat','-depsc2', '-loose')
 % print(f3,'figures/comp_init_ridge','-depsc2', '-loose')
