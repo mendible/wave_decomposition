@@ -1,4 +1,5 @@
-clear all, close all, clc, addpath('RPCA')
+clear all, close all, clc, 
+addpath('RPCA'), addpath('methods'), addpath('plotting')
 load('data/burgers.mat');
 
 params.data.u = u;

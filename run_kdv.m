@@ -1,5 +1,6 @@
-clear all, close all, clc, addpath('RPCA')
-load('data/kdv.mat');
+clear all, close all, clc, 
+addpath('RPCA'), addpath('methods'), addpath('plotting')
+sload('data/kdv.mat');
 
 params.data.u = u;
 params.data.x = x;

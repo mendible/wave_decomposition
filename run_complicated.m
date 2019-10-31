@@ -1,5 +1,5 @@
-clear all, close all, clc, addpath('RPCA')
-
+clear all, close all, clc, 
+addpath('RPCA'), addpath('methods'), addpath('plotting')
 
 % make the data
 nx = 2^8;
