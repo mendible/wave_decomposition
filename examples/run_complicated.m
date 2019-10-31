@@ -1,5 +1,5 @@
 clear all, close all, clc, 
-addpath('RPCA'), addpath('methods'), addpath('plotting')
+addpath(genpath(fileparts(pwd)))
 
 % make the data
 nx = 2^8;

@@ -1,5 +1,5 @@
 clear all, close all, clc, 
-addpath('RPCA'), addpath('methods'), addpath('plotting')
+addpath(genpath(fileparts(pwd)))
 sload('data/kdv.mat');
 
 params.data.u = u;

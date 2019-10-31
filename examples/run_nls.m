@@ -1,5 +1,5 @@
 clear all, close all, clc, 
-addpath('RPCA'), addpath('methods'), addpath('plotting')
+addpath(genpath(fileparts(pwd)))
 load('data/nls.mat');
 
 params.data.u = u;
