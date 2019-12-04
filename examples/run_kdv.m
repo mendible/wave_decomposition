@@ -1,6 +1,6 @@
-clear all, close all, clc, 
+clear; close all; clc 
 addpath(genpath(fileparts(pwd)))
-sload('data/kdv.mat');
+load('data/kdv.mat');
 
 params.data.u = u;
 params.data.x = x;

@@ -1,4 +1,4 @@
-clear all, close all, clc, 
+clear; close all; clc 
 addpath(genpath(fileparts(pwd)))
 
 % make the data
