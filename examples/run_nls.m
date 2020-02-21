@@ -10,7 +10,6 @@ params.optim.n = 3;
 params.optim.library = @(var)[var.^3, var.^2, var, ones(size(var))];
 params.optim.init_lambda = 0.0001; 
 
-params.optim.mu = 1e8;
 params.optim.zeta = 1e-4; % relaxation parameter, 1e-1
 params.optim.reg = 1e1; %regularization
 

@@ -1,6 +1,6 @@
 clear all, close all, clc, 
 addpath(genpath(fileparts(pwd)))
-sload('data/kdv.mat');
+load('data/kdv.mat');
 
 params.data.u = u;
 params.data.x = x;
@@ -10,9 +10,8 @@ params.optim.n = 2;
 params.optim.library = @(var)[var.^3, var.^2, var, ones(size(var))];
 params.optim.init_lambda = 2; 
 
-params.optim.mu = 1e8;
-params.optim.zeta = 1e-4; % relaxation parameter, 1e-1
-params.optim.reg = 1e1; %regularization
+params.optim.zeta = 1e-4; % relaxation parameter
+params.optim.reg = 1e1; % regularization parameter
 
 params.optim.type = 'ridge';
 

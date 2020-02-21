@@ -25,7 +25,7 @@ reg = params.optim.reg;
 Ik = eye(k);
 
 TT = T.';
-eta = 1/zeta;  % lambda now corresponds to zeta
+eta = 1/zeta;  % eta now corresponds to zeta
 
 iter = 1;
 Csave{1} = Cin;
@@ -61,7 +61,6 @@ while(~conv && iter < maxiter)
     obj = obj + norm(C(:) - B(:))*eta + lambda*params.optim.proxBobj(B);
     
     err = vecnorm(B(:)-Bold(:))/eta + vecnorm(W(:)-Wold(:))/mu;
-    %     err = norm(T*A-X);
     conv = err < tol;
     if ~mod(iter,10)
         fprintf('iter: %d, obj: %7.3e, err: %7.16e\n', iter, obj, err);
