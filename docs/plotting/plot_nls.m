@@ -165,9 +165,9 @@ plot_err
 % print(f5,'../figures/nls_init_models','-depsc2', '-loose')
 % print(f6,'../figures/nls_clusters','-depsc2', '-loose')
 % print(f7,'../figures/nls_models','-depsc2', '-loose')
-% print(f8, '../figures/nls_sprca','-depsc2', '-loose')
-% print(f9, '../figures/nls_spod','-depsc2', '-loose')
-% print(f10, '../figures/nls_pod','-depsc2', '-loose')
+print(f8, '../figures/nls_sprca','-depsc2', '-loose')
+print(f9, '../figures/nls_spod','-depsc2', '-loose')
+print(f10, '../figures/nls_pod','-depsc2', '-loose')
 % print(f11, '../figures/nls_spectrum','-depsc2', '-loose')
 
 end
