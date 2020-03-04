@@ -193,8 +193,8 @@ set(gcf,'position',[1217, 488, 681, 497]);
 % print(f5,'../figures/comp_init_models','-depsc2', '-loose')
 % print(f6,'../figures/comp_clusters','-depsc2', '-loose')
 % print(f7,'../figures/comp_models','-depsc2', '-loose')
-print(f8,'../figures/comp_srpcs','-depsc2', '-loose')
-print(f9,'../figures/comp_spod','-depsc2', '-loose')
+% print(f8,'../figures/comp_srpcs','-depsc2', '-loose')
+% print(f9,'../figures/comp_spod','-depsc2', '-loose')
 % print(f10,'../figures/comp_pod','-depsc2', '-loose')
 % print(f11, '../figures/comp_spectrum','-depsc2', '-loose')
 
