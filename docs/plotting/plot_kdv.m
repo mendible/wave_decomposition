@@ -155,6 +155,7 @@ xlabel('rank r','fontsize',24)
 ylabel('\sigma_r', 'fontsize',24,'rotation',0,'position',[-65 1e-4])
 legend('POD','shifted POD','shifted RPCA')
 
+plot_err
 
 % print(f1,'../figures/kdv_data','-depsc2', '-loose')
 % print(f2,'../figures/kdv_data_flat','-depsc2', '-loose')

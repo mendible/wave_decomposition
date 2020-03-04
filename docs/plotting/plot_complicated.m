@@ -158,6 +158,8 @@ set(gca,'fontsize',18)
 % xlim([0.5,10])
 xlabel('Rank','fontsize',24)
 legend('POD','UnTWIST')
+
+plot_err
 % print(f1,'../figures/comp_data','-depsc2', '-loose')
 % print(f2,'../figures/comp_data_flat','-depsc2', '-loose')
 % print(f3,'../figures/comp_init_ridge','-depsc2', '-loose')

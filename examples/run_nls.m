@@ -18,7 +18,7 @@ params.optim.type = 'ridge';
 params = optimSR3(params);
 
 params.ROM.lambda = 0.01; 
-params.ROM.rank = 1;
+params.ROM.rank = 2;
 
 params = make_ROMS(params);
 

@@ -157,7 +157,7 @@ set(gca,'fontsize',18)
 xlabel('% Modes Retained','fontsize',24)
 legend('POD','UnTWIST')
 
-
+plot_err
 % print(f1,'../figures/nls_data','-depsc2', '-loose')
 % print(f2,'../figures/nls_data_flat','-depsc2', '-loose')
 % print(f3,'../figures/nls_init_ridge','-depsc2', '-loose')

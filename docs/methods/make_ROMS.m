@@ -52,7 +52,7 @@ end
 params.ROM.U = U;
 params.ROM.S = S;
 params.ROM.V = V;
-params.ROM.usrpca = sum(usrpca,3);
-params.ROM.uspod = sum(uspod,3);
+params.ROM.usrpca = sum(usrpca,3)/2;
+params.ROM.uspod = sum(uspod,3)/2;
 params.ROM.upod = upod;
 end
