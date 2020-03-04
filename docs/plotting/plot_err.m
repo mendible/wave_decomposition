@@ -21,9 +21,15 @@ colorbar;
 
 figure
 b = bar([1;2;3],[norm(err_pod); norm(err_spod); norm(err_rpca)]);
-set(gca,'xticklabel',{'POD','shifted POD','shifted RPCA'})
+% set(gca,'xticklabel',{'POD','shifted POD','shifted RPCA'})
 b.FaceColor = 'flat';
 
 b.CData(1,:) = blue;
 b.CData(2,:) = orange;
 b.CData(3,:) = yellow;
+set(gca,'fontsize',20)
+yl = ylabel('$$l_2$$-norm error','Interpreter','latex');
+pos = yl.Position;
+pos(1) = -0.3;
+set(yl,'position',pos)
+xticks('')

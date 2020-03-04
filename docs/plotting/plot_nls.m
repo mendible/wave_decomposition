@@ -146,7 +146,7 @@ semilogy(srpca_spec,'color',colors_mat{3},'linewidth',2)
 set(gca,'fontsize',18)
 xlim([-5 515])
 xlabel('rank r','fontsize',24)
-ylabel('\sigma_r', 'fontsize',24,'rotation',0,'position',[-65 1e-4])
+ylabel('$\sigma_r$', 'fontsize',24,'rotation',0,'position',[-65 1e-4])
 legend('POD','shifted POD','shifted RPCA')
 
 f12 = figure;%('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
@@ -157,7 +157,33 @@ set(gca,'fontsize',18)
 xlabel('% Modes Retained','fontsize',24)
 legend('POD','UnTWIST')
 
-plot_err
+f13 = figure;%('DefaultAxesPosition', [0.1, 0.1, 0.8, 0.8]);
+subplot(1,2,2)
+b = bar([1;2;3],[norm(u-upod); norm(u-uspod); norm(u-usrpca)]);
+b.FaceColor = 'flat';
+b.CData(1,:) = colors_mat{1};
+b.CData(2,:) = colors_mat{2};
+b.CData(3,:) = colors_mat{3};
+set(gca,'fontsize',20)
+yl = ylabel('$$l_2$$-norm error','Interpreter','latex');
+pos = yl.Position;
+pos(1) = -0.3;
+set(yl,'position',pos)
+xticks('')
+yticks([0 200])
+
+subplot(1,2,1)
+semilogy(diag(params.ROM.S.pod),'color',colors_mat{1},'linewidth',2)
+hold on
+semilogy(spod_spec,'color',colors_mat{2},'linewidth',2)
+semilogy(srpca_spec,'color',colors_mat{3},'linewidth',2)
+set(gca,'fontsize',18)
+xlim([-5 50])
+xlabel('rank r','fontsize',24)
+ylabel('$\sigma_r$', 'fontsize',24,'rotation',0);%,'position',[-65 1e-4])
+legend('POD','shifted POD','shifted RPCA')
+
+set(gcf,'position',[1217, 488, 681, 497]);
 % print(f1,'../figures/nls_data','-depsc2', '-loose')
 % print(f2,'../figures/nls_data_flat','-depsc2', '-loose')
 % print(f3,'../figures/nls_init_ridge','-depsc2', '-loose')
@@ -165,9 +191,9 @@ plot_err
 % print(f5,'../figures/nls_init_models','-depsc2', '-loose')
 % print(f6,'../figures/nls_clusters','-depsc2', '-loose')
 % print(f7,'../figures/nls_models','-depsc2', '-loose')
-print(f8, '../figures/nls_sprca','-depsc2', '-loose')
-print(f9, '../figures/nls_spod','-depsc2', '-loose')
-print(f10, '../figures/nls_pod','-depsc2', '-loose')
+% print(f8, '../figures/nls_sprca','-depsc2', '-loose')
+% print(f9, '../figures/nls_spod','-depsc2', '-loose')
+% print(f10, '../figures/nls_pod','-depsc2', '-loose')
 % print(f11, '../figures/nls_spectrum','-depsc2', '-loose')
 
 end
